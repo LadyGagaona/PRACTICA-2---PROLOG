@@ -11,3 +11,40 @@ vehicle(bmw, coupex2, suv, 40000, 2025).
 vehicle(bmw, e30m3, pickup, 50000, 2022).
 vehicle(bmw, m2, sport, 29000, 2018).
 vehicle(ford, focusrs, sport, 32000, 2017).
+
+%predicados para suma.
+
+sum_prices([], 0).
+
+
+sum_prices([(_, Price)|T], Total) :-
+    sum_prices(T, Rest),
+    Total is Price + Rest.
+
+
+%part 2.
+
+meet_budget(Reference, BudgetMax):-
+    vehicle(_, Reference, _, Price, _),
+    Price =< BudgetMax.
+
+    vehicles_by_brand(Brand, Refs) :-
+    findall(Ref, vehicle(Brand, Ref, _, _, _), Refs).
+
+vehicles_grouped_by_brand(Brand,Grouped):-
+    bagof((Type,Refs), bagof(Ref,Price,Year^(vehicle(Brand,Ref,Type,Price,Year)),Refs),Grouped).
+
+ %Test_cases.
+
+test_case1(Refs) :-
+    findall(Ref, (vehicle(toyota, Ref, suv, Price, _), Price < 30000), Refs).
+
+
+test_case2(Grouped) :-
+    bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), Grouped).
+
+
+test_case3(Vehicles, Total) :-
+    findall((Ref, Price), (vehicle(_, Ref, sedan, Price, _), Price =< 500000), Vehicles),
+    sum_prices(Vehicles, Total),
+    Total =< 500000.
