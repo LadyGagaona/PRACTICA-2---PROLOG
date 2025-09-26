@@ -14,15 +14,12 @@ vehicle(ford, focusrs, sport, 32000, 2017).
 
 %predicados para suma.
 
-sum_prices([], 0).
+sum(Product, Total):- 
+findall(Value, vehicle(_, _, Product, Value, _), Values), 
+sum_list(Values, Total).
 
 
-sum_prices([(_, Price)|T], Total) :-
-    sum_prices(T, Rest),
-    Total is Price + Rest.
-
-
-%part 2.
+%part 2
 
 meet_budget(Reference, BudgetMax):-
     vehicle(_, Reference, _, Price, _),
@@ -33,6 +30,13 @@ meet_budget(Reference, BudgetMax):-
 
 vehicles_grouped_by_brand(Brand,Grouped):-
     bagof((Type,Refs), bagof(Ref,Price,Year^(vehicle(Brand,Ref,Type,Price,Year)),Refs),Grouped).
+
+    limit(L):-
+    write('Enter the limit for the total inventory, or enter 0 if you do not need one, finish with a dot: '), read(X), ( X=:=0 -> L=none; L=X).
+
+generate_report(Tipe, Budget, Lista, Total):-
+    limit(L),
+    findall([Brand, Name, Tipe, Value, Year], (vehicle(Brand, Name, Tipe, Value, Year), Value<Budget), Lista), sum(Tipe, Total), ( L == none -> true ; Total =< L ).
 
  %Test_cases.
 
@@ -48,3 +52,4 @@ test_case3(Vehicles, Total) :-
     findall((Ref, Price), (vehicle(_, Ref, sedan, Price, _), Price =< 500000), Vehicles),
     sum_prices(Vehicles, Total),
     Total =< 500000.
+
