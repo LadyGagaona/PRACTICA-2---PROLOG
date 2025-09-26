@@ -48,8 +48,8 @@ test_case2(Grouped) :-
     bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), Grouped).
 
 
-test_case3(Vehicles, Total) :-
-    findall((Ref, Price), (vehicle(_, Ref, sedan, Price, _), Price =< 500000), Vehicles),
-    sum_prices(Vehicles, Total),
-    Total =< 500000.
+%test_case3
+
+generate_report(sedan, 500000, Lista, Total).
+
 
