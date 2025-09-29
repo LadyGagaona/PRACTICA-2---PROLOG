@@ -28,9 +28,6 @@ meet_budget(Reference, BudgetMax):-
     vehicles_by_brand(Brand, Refs) :-
     findall(Ref, vehicle(Brand, Ref, _, _, _), Refs).
 
-vehicles_grouped_by_brand(Brand,Grouped):-
-    bagof((Type,Refs), bagof(Ref,Price,Year^(vehicle(Brand,Ref,Type,Price,Year)),Refs),Grouped).
-
 limit(L):- write('Enter the limit for the total inventory, or enter 0 if you do not need one, finish with a dot: '), read(X), ( X=:=0 -> L = none; L = X).
 
 generate_report(Tipe, Budget, Lista, Total):-
@@ -39,8 +36,7 @@ generate_report(Tipe, Budget, Lista, Total):-
 
  %Test_cases.
 
-test_case1(Refs) :-
-    findall(Ref, (vehicle(toyota, Ref, suv, Price, _), Price < 30000), Refs).
+test_case1(Lista):- generate_report(suv, 300000, Lista, Total).
 
 
 test_case2(Grouped) :-
@@ -48,6 +44,7 @@ test_case2(Grouped) :-
 
 
 test_case3(Lista, Total):- generate_report(sedan, 500000, Lista, Total).
+
 
 
 
