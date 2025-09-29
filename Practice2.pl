@@ -47,7 +47,8 @@ test_case2(Grouped) :-
     bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), Grouped).
 
 
-test_case3(Tipe, Budget):- generate_report(Tipe, Budget, Lista, Total).
+test_case3(Tipe, Budget, Lista, Total):- generate_report(Tipe, Budget, Lista, Total).
+
 
 
 
