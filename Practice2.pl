@@ -41,10 +41,11 @@ test_case1(Lista):- generate_report(suv, 300000, Lista, Total).
 
 
 test_case2(Grouped) :-
-    bagof((Type, Ref), Price^Ref^vehicle(ford, Ref, Type, Price, Year), Grouped).
+    bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), Grouped).
 
 
 test_case3(Lista, Total):- generate_report(sedan, 500000, Lista, Total).
+
 
 
 
