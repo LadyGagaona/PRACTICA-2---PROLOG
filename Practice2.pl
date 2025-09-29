@@ -29,7 +29,7 @@ meet_budget(Reference, BudgetMax):-
     findall(Ref, vehicle(Brand, Ref, _, _, _), Refs).
 
 
-limit(L):- write('Enter the limit for the total inventory, or enter 0 if you do not need one, finish with a dot: '), read(X), ( X=:=0 -> L = none; L = X).
+limit(L):- write('Enter the limit for the total inventory, or enter 0 if you do not need one, end with a dot'), read(X), ( X=:=0 -> L = none; L = X).
 
 generate_report(Tipe, Budget, Lista, Total):-
     limit(L),
@@ -45,6 +45,7 @@ test_case2(Grouped) :-
 
 
 test_case3(Lista, Total):- generate_report(sedan, 500000, Lista, Total).
+
 
 
 
