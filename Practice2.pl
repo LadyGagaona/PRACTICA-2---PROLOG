@@ -28,8 +28,6 @@ meet_budget(Reference, BudgetMax):-
     vehicles_by_brand(Brand, Refs) :-
     findall(Ref, vehicle(Brand, Ref, _, _, _), Refs).
 
-    vehicles_grouped_by_brand(Brand, Grouped) :-
-    bagof((Type, Ref), Price^Year^vehicle(Brand, Ref, Type, Price, Year), Grouped).
 
 limit(L):- write('Enter the limit for the total inventory, or enter 0 if you do not need one, finish with a dot: '), read(X), ( X=:=0 -> L = none; L = X).
 
@@ -43,10 +41,11 @@ test_case1(Lista):- generate_report(suv, 300000, Lista, Total).
 
 
 test_case2(Grouped) :-
-    bagof((Type, Year, Ref), vehicle(ford, Ref, Type, _, Year), Grouped).
+    bagof((Type, Ref), Price^Ref^vehicle(ford, Ref, Type, Price, Year), Grouped).
 
 
 test_case3(Lista, Total):- generate_report(sedan, 500000, Lista, Total).
+
 
 
 
