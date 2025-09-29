@@ -1,7 +1,7 @@
 # PRACTICA-2---PROLOG
 TRABAJO REALIZADO PARA LA PRESSENTACION DE LA PROGRAMACIÓN LÓGICA EN EL LENGUAJE PROLOG.
 
-### LINK DEL VIDEO: https://youtu.be/vk_AKYBkxUA
+### LINK DEL VIDEO: 
 
 
 ### Integrantes: Juan Sebastián Gaona - Ashly Sofia Robayo.
